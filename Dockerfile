@@ -1,7 +1,7 @@
 FROM golang:1.22 as builder
 
 WORKDIR /app
-COPY go.* /app
+COPY go.* /app/
 RUN go mod download
 
 COPY . /app
