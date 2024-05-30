@@ -1,7 +1,17 @@
-FROM nginx:latest
+FROM golang:1.22 as builder
 
-RUN mkdir -p /usr/share/nginx/html/api/auth
+WORKDIR /app
+COPY go.* /app
+RUN go mod download
 
-RUN echo "hello from the auth service test" > /usr/share/nginx/html/api/auth/index.html
+COPY . /app
+RUN CGO_ENABLED=0 GOOS=linux go build -o ./bin/auth_service -ldflags "-X main.build=." ./cmd
+
+FROM alpine:3.18
+
+COPY --from=builder /app/bin/auth_service /usr/bin/auth_service
+RUN chmod +x /usr/bin/auth_service
 
 EXPOSE 80
+
+CMD ["/usr/bin/auth_service"]
