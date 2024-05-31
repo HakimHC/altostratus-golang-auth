@@ -1,5 +1,5 @@
 {
-    "executionRoleArn": "arn:aws:iam::506367240739:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/ecsTaskExecutionRole",
     "containerDefinitions": [
         {
             "name": "auth",
@@ -11,7 +11,16 @@
                     "protocol": "tcp",
                     "containerPort": 80
                 }
-            ]
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "awslogs-auth-service",
+                    "awslogs-region": "${AWS_REGION}",
+                    "awslogs-stream-prefix": "awslogs-ecs-auth"
+                }
+            }
         }
     ],
     "requiresCompatibilities": [
