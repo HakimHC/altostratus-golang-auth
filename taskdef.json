@@ -1,5 +1,6 @@
 {
     "executionRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/ecsTaskExecutionRole",
+    "taskRoleArn": "${TASK_ROLE_ARN}",
     "containerDefinitions": [
         {
             "name": "auth",
