@@ -21,7 +21,13 @@
                     "awslogs-region": "${AWS_REGION}",
                     "awslogs-stream-prefix": "awslogs-ecs-auth"
                 }
-            }
+            },
+            "secrets": [
+                {
+                    "name": "JWT_SECRET",
+                    "valueFrom": "${JWT_SECRET_ARN}"
+                }
+            ]
         }
     ],
     "requiresCompatibilities": [
