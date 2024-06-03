@@ -10,6 +10,8 @@ func AuthRoute(e *echo.Echo) {
 
 	api.POST("/register", controllers.Register)
 	api.POST("/login", controllers.Login)
+
+	api.GET("/health", controllers.HealthCheck)
 }
 
 func serverHeader(next echo.HandlerFunc) echo.HandlerFunc {

@@ -7,3 +7,8 @@ type AuthResponse struct {
 	Message string    `json:"message"`
 	Data    *echo.Map `json:"data"`
 }
+
+type HealthCheckResponse struct {
+	Status int    `json:"status"`
+	Reason string `json:"reason"`
+}

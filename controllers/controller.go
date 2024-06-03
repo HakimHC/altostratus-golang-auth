@@ -127,3 +127,12 @@ func Login(c echo.Context) error {
 			},
 		})
 }
+
+func HealthCheck(c echo.Context) error {
+	return c.JSON(
+		http.StatusOK,
+		responses.HealthCheckResponse{
+			Status: http.StatusOK,
+			Reason: "Everything is healthy",
+		})
+}
