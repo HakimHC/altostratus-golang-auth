@@ -15,4 +15,3 @@ RUN chmod +x /usr/bin/auth_service
 EXPOSE 80
 
 CMD ["/usr/bin/auth_service"]
-
