@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/HakimHC/altostratus-golang-auth/config"
 	"github.com/HakimHC/altostratus-golang-auth/models"
 	"github.com/HakimHC/altostratus-golang-auth/responses"
 	"github.com/golang-jwt/jwt/v4"
@@ -55,7 +56,7 @@ func Register(c echo.Context) error {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
 	// TODO: get secret from env
-	t, err := token.SignedString([]byte("secret"))
+	t, err := token.SignedString([]byte(config.JwtSecret))
 	if err != nil {
 		return ErrorResponse(c, http.StatusInternalServerError, err.Error())
 	}
@@ -105,9 +106,7 @@ func Login(c echo.Context) error {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	// TODO: get it from env
-	//secret := os.Getenv("JWT_SECRET")
-	secret := "secret"
+	secret := config.JwtSecret
 	if secret == "" {
 		return ErrorResponse(c, http.StatusInternalServerError, "JWT secret is not set.")
 	}

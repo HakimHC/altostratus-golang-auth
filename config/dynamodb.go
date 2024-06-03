@@ -4,13 +4,10 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
-
 	"log"
 )
 
-var DynamoDB *dynamodb.DynamoDB
-
-func init() {
+func initDynamoDb() {
 	// TODO: get from environment vars
 	region := "eu-west-1"
 
