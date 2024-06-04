@@ -14,6 +14,9 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t $ECR_REPOSITORY_URL:$CODEBUILD_RESOLVED_SOURCE_VERSION .
+      - echo Replacing placeholders
+      - bash ./replace_placeholders.sh
+      - cat taskdef.json
   post_build:
     commands:
       - echo Build completed on `date`
